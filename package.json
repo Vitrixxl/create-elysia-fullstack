@@ -1,7 +1,8 @@
 {
   "name": "elysia-template",
+  "type": "module",
   "script": {
-    "create": "index.ts"
+    "create": "bun bun-create.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
