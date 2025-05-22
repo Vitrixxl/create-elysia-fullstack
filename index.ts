@@ -1,51 +1,12 @@
+#!/usr/bin/env bun
+
 import ora from 'ora';
-import { resolve } from 'path';
 import prompts from 'prompts';
 import { createProject } from './helpers/create-project';
-import type { AvailableDepencies } from './installers/dependency-version-map';
-import { copyDir } from './utils/copy-dir';
-
-console.log(JSON.parse(
-  `  {
-  "name": "react",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "jotai": "^2.12.4",
-    "lucide-react": "^0.511.0",
-    "next": "15.3.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "tailwindcss": "^4",
-    "tw-animate-css": "^1.3.0",
-    "typescript": "^5"
-  }
-}
-`,
-));
 
 export type AppConfig = {
   appName: string;
   appDir: string;
-  // packages: Record<
-  //   AvailableDepencies,
-  //   { inUse: boolean; installer: Installer }
-  // >;
   front: 'next' | 'vite';
   choices: AppChoices;
   rootCliDir: string;

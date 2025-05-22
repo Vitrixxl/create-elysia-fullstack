@@ -1,8 +1,9 @@
 {
-  "name": "elysia-template",
+  "name": "create-elysia-fullstack",
+  "version": "0.0.1",
   "type": "module",
-  "script": {
-    "create": "bun bun-create.ts"
+  "bin": {
+    "create-elysia-fullstack": "index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
