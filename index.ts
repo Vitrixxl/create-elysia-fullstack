@@ -4,6 +4,11 @@ import ora from 'ora';
 import prompts from 'prompts';
 import { createProject } from './helpers/create-project';
 
+process.on('SIGINT', () => {
+  console.log('\n❌ Operation cancelled by user.');
+  process.exit(0);
+});
+
 export type AppConfig = {
   appName: string;
   appDir: string;
@@ -93,11 +98,16 @@ const appChoices: AppChoices = await prompts([
     message: 'Would you like to use jotai as global state management',
     initial: true,
   },
-]);
+], {
+  onCancel: () => {
+    console.log('\n❌ Prompt cancelled.');
+    process.exit(0);
+  },
+});
 
 const spinner = ora(`Init project`).start();
 
 await createProject({ choices: appChoices, rootCliDir: import.meta.dir });
 
 spinner.stop();
-console.log('Everything is setup correctly');
+spinner.succeed('Project created');

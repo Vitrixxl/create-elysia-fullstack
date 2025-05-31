@@ -1,7 +1,8 @@
 import type { AppConfig } from '..';
 import { createScaffold } from './creat-scaffold';
 import path from 'path';
-import { buildPkgInstallerMap } from '../installers';
+import { buildPkgInstallerMap, dependenciesInstaller } from '../installers';
+import { renameApp } from '../utils/rename-app';
 
 export const createProject = async (
   { choices, rootCliDir }: Pick<AppConfig, 'choices' | 'rootCliDir'>,
@@ -13,7 +14,9 @@ export const createProject = async (
     choices,
     rootCliDir,
   };
+
   await createScaffold(appConfig);
+  await renameApp(appConfig);
 
   const pkgInstallerMap = buildPkgInstallerMap(appConfig);
 
@@ -21,4 +24,5 @@ export const createProject = async (
     if (!inUse) return;
     await installer();
   }
+  await dependenciesInstaller(appConfig);
 };

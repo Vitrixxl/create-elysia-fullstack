@@ -22,6 +22,6 @@ export const copyDir = async (from: string, to: string) => {
   };
   await searchDir(from, to);
   for (const [path, file] of Object.entries(fileWithPathMap)) {
-    Bun.write(path, file);
+    await Bun.write(path, file);
   }
 };

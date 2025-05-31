@@ -6,7 +6,7 @@ import { mkdir } from 'fs/promises';
 import type { AvailableDepencies } from './dependency-version-map';
 import { databaseInstaller } from './database';
 import { resolve } from 'path';
-import type { AppConfig } from '..';
+import type { AppChoices, AppConfig } from '..';
 
 export type InstallerConext = {
   appPath: string;
@@ -55,4 +55,21 @@ export const buildPkgInstallerMap = (
   };
 
   return map;
+};
+
+export const dependenciesInstaller = async ({ appDir }: AppConfig) => {
+  const child = Bun.spawn({
+    cmd: ['bun', 'install', '--filter', "'*'"],
+    cwd: appDir, // <-- ici tu précises le dossier où exécuter la commande
+    stdout: 'inherit',
+    stderr: 'inherit',
+  });
+  const exitCode = await child.exited;
+
+  if (exitCode === 0) {
+    console.log('✅ Dependencies installed');
+  } else {
+    console.error('❌ Erorr while installing dependency');
+    process.exit(exitCode);
+  }
 };
