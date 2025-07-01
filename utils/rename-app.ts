@@ -3,9 +3,8 @@ import { readFileJson } from './read-json';
 import { resolve } from 'path';
 
 export const renameApp = async ({ appDir, appName }: AppConfig) => {
-  console.log(appDir);
   const reactPkgJsonPath = resolve(appDir, 'apps/react/package.json');
-  const elysiaPkgJsonPath = resolve(appDir, 'apps/react/package.json');
+  const elysiaPkgJsonPath = resolve(appDir, 'apps/backend/package.json');
   const reactPkgJson = await readFileJson(
     reactPkgJsonPath,
   );

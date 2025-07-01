@@ -19,7 +19,7 @@ export const databaseInstaller = (
           ? 'with-mysql.ts'
           : 'with-postgres.ts',
       ),
-      resolve(appDir, 'apps/backend/src/libs/db'),
+      resolve(appDir, 'apps/backend/src/lib/db'),
       'index.ts',
     );
     if (choices.drizzle) {
@@ -33,7 +33,7 @@ export const databaseInstaller = (
             ? 'with-mysql.ts'
             : 'with-postgres.ts',
         ),
-        resolve(appDir, 'apps/backend/src/libs/db'),
+        resolve(appDir, 'apps/backend/src/lib/db'),
         'schema.ts',
       );
       await addDeps({ appConfig, app: 'back', dep: 'drizzle-orm' });

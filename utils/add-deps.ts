@@ -22,5 +22,5 @@ export const addDeps = async ({ appConfig, dep, app }: AddDepsOption) => {
     path,
   );
   pkgJson.dependencies[dep] = dependencyVersions[dep];
-  Bun.write(path, JSON.stringify(pkgJson, null, 2));
+  await Bun.write(path, JSON.stringify(pkgJson, null, 2));
 };

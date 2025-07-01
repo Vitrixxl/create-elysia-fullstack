@@ -1,4 +1,4 @@
-import { AppConfig } from '..';
+import type { AppConfig } from '..';
 import { resolve } from 'path';
 import { copyFile } from '../utils/copy-file';
 
@@ -14,6 +14,26 @@ export const shadcnInstaller = (appConfig: AppConfig) => {
       ),
       resolve(appDir, 'apps/react/src'),
       'components.json',
+    );
+    await copyFile(
+      resolve(
+        rootCliDir,
+        'template/front',
+        choices.front,
+        'shadcn/utils.ts.json',
+      ),
+      resolve(appDir, 'apps/react/src'),
+      'utils.ts.json',
+    );
+    await copyFile(
+      resolve(
+        rootCliDir,
+        'template/front',
+        choices.front,
+        'shadcn/utils.ts.json',
+      ),
+      resolve(appDir, 'apps/react/src'),
+      'utils.ts.json',
     );
     await copyFile(
       resolve(

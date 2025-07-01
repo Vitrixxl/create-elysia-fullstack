@@ -16,7 +16,7 @@ export const betterAuthInstaller = (appConfig: AppConfig) => {
           ? 'with-mysql.ts'
           : 'with-postgres.ts',
       ),
-      resolve(appDir, 'apps/backend/src/libs/auth'),
+      resolve(appDir, 'apps/backend/src/lib/auth'),
       'auth.ts',
     );
     await copyFile(
@@ -26,7 +26,7 @@ export const betterAuthInstaller = (appConfig: AppConfig) => {
         choices.front,
         'auth/auth-client.ts',
       ),
-      resolve(appDir, 'apps/react/src/libs/auth'),
+      resolve(appDir, 'apps/react/src/lib/auth'),
       'auth-client.ts',
     );
     await addDeps({ appConfig, app: 'back', dep: 'better-auth' });

@@ -1,7 +1,9 @@
 {
   "name": "app",
-  "type": "module",
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "dev": "bun --filter '*' dev"
+  }
 }
